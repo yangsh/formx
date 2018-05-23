@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weimi.formx.common.mapper.ShopFormTextItemMapper">
+
+    <!-- 新增店铺表单项 -->
+    <insert id="add" parameterType="ShopFormTextItem">
+        <selectKey order="AFTER" keyProperty="shopFormTextItemId" resultType="Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO t_shop_form_text_item
+        <trim prefix="(" suffix =")" suffixOverrides=",">
+            <if test="shopFormExecutionId != null">shop_form_execution_id,</if>
+            <if test="formItemId != null">form_item_id,</if>
+            <if test="formItemName != null">form_item_name,</if>
+            <if test="orderNum != null">order_num,</if>
+            <if test="executeStatus != null">execute_status,</if>
+            <if test="actionItem != null">action_item,</if>
+            <if test="createTime != null">create_time,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="shopFormExecutionId != null">#{shopFormExecutionId},</if>
+            <if test="formItemId != null">#{formItemId},</if>
+            <if test="formItemName != null">#{formItemName},</if>
+            <if test="orderNum != null">#{orderNum},</if>
+            <if test="executeStatus != null">#{executeStatus},</if>
+            <if test="actionItem != null">#{actionItem},</if>
+            <if test="createTime != null">#{createTime},</if>
+        </trim>
+    </insert>
+
+    <!-- 获取店铺表单项列表 -->
+    <select id="getList" resultType="ShopFormTextItem">
+        SELECT * FROM t_shop_form_text_item WHERE shop_form_execution_id=#{shopFormExecutionId} AND DATE_FORMAT(create_time, '%Y-%m-%d')=#{createTime} ORDER BY order_num ASC
+    </select>
+
+</mapper>

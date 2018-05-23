@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weimi.formx.common.mapper.ShopExecuteRecordMapper">
+
+    <!-- 新增店铺执行记录 -->
+    <insert id="add" parameterType="ShopExecuteRecord">
+        INSERT INTO t_shop_execute_record
+        <trim prefix="(" suffix =")" suffixOverrides=",">
+            <if test="shopId != null">shop_id,</if>
+            <if test="shopName != null">shop_name,</if>
+            <if test="completeTime != null">complete_time,</if>
+            <if test="confirmStatus != null">confirm_status,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="shopId != null">#{shopId},</if>
+            <if test="shopName != null">#{shopName},</if>
+            <if test="completeTime != null">#{completeTime},</if>
+            <if test="confirmStatus != null">#{confirmStatus},</if>
+        </trim>
+    </insert>
+
+    <!-- 修改确认状态 -->
+    <update id="updateConfirmStatus">
+        UPDATE
+            t_shop_execute_record
+        SET
+            confirm_status=#{confirmStatus},
+            confirm_time=#{confirmTime}
+        WHERE
+            shop_id=#{shopId}
+            AND DATE_FORMAT(complete_time, '%Y-%m-%d')=#{completeTime}
+    </update>
+
+</mapper>

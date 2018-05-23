@@ -1,0 +1,8 @@
+.*
+*.iml
+/log/
+**/target/
+/CATALINA_HOME_IS_UNDEFINED/
+/catalina_home_IS_UNDEFINED/
+**/log/
+!.gitignore
