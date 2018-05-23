@@ -15,7 +15,7 @@ public class ShopFormPicItem {
 
     private Long shopFormPicItemId; // 店铺表单图片项ID
     private Long shopFormExecutionId; // 店铺表单执行ID
-    private String picUrl; // 图片URL
+    private String picName; // 图片名称
     private String picComment; // 图片评论
     private Date createTime; // 创建时间
 

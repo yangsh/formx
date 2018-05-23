@@ -84,7 +84,7 @@ CREATE TABLE t_shop_form_text_item (
 CREATE TABLE t_shop_form_pic_item (
     `shop_form_pic_item_id` BIGINT(8) PRIMARY KEY AUTO_INCREMENT COMMENT '店铺表单图片项ID(主键)',
     `shop_form_execution_id` BIGINT(8) NOT NULL COMMENT '店铺表单执行ID',
-    `pic_url` VARCHAR(256) NOT NULL COMMENT '图片URL',
+    `pic_name` VARCHAR(64) NOT NULL COMMENT '图片名称',
     `pic_comment` VARCHAR(255) COMMENT '图片评论',
     `create_time` DATETIME NOT NULL COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='店铺表单图片项表';

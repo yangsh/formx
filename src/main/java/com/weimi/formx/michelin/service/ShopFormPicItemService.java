@@ -8,6 +8,7 @@ import com.weimi.formx.michelin.response.ShopFormPicItemListResponse;
 import com.weimi.formx.michelin.response.ShopFormPicItemListForShopownerResponse;
 import com.weimi.formx.michelin.response.ShopFormPicItemResponse;
 import com.weimi.formx.util.DateUtils;
+import com.weimi.formx.util.OSSUtils;
 import com.weimi.formx.util.ValueCheckUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -43,12 +44,16 @@ public class ShopFormPicItemService {
         List<ShopFormPicItemResponse> inResList = new ArrayList<>();
         ShopFormPicItemResponse inRes = null;
 
+        OSSUtils oss = new OSSUtils();
         List<ShopFormPicItem> list = shopFormPicItemMapper.getList(shopFormExecutionId, DateUtils.toDateString(now));
         for (int i = 0; i < list.size(); i++) {
             inRes = new ShopFormPicItemResponse();
             BeanUtils.copyProperties(list.get(i), inRes);
+            inRes.setPicUrl(oss.getUrl(list.get(i).getPicName()));
             inResList.add(inRes);
         }
+
+        oss.destory();
 
         ShopFormPicItemListForShopownerResponse res = new ShopFormPicItemListForShopownerResponse();
 
@@ -71,12 +76,16 @@ public class ShopFormPicItemService {
         List<ShopFormPicItemResponse> inResList = new ArrayList<>();
         ShopFormPicItemResponse inRes = null;
 
+        OSSUtils oss = new OSSUtils();
         List<ShopFormPicItem> list = shopFormPicItemMapper.getList(shopFormExecutionId, DateUtils.toDateString(now));
         for (int i = 0; i < list.size(); i++) {
             inRes = new ShopFormPicItemResponse();
             BeanUtils.copyProperties(list.get(i), inRes);
+            inRes.setPicUrl(oss.getUrl(list.get(i).getPicName()));
             inResList.add(inRes);
         }
+
+        oss.destory();
 
         ShopFormPicItemListResponse res = new ShopFormPicItemListResponse();
 

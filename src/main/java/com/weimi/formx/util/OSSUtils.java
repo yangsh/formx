@@ -27,7 +27,7 @@ public class OSSUtils {
     }
 
     public String uploadImage(InputStream is) {
-        String key = System.currentTimeMillis() + StringUtils.getRandomString(5) + ".png";
+        String key = System.currentTimeMillis() + StringUtils.getRandomString(6) + ".png";
         ossClient.putObject(OSSConfig.bucketName, key, is);
         return key;
     }
@@ -38,8 +38,8 @@ public class OSSUtils {
      * @return
      */
     public String getUrl(String key) {
-        // 设置URL过期时间为10年  3600l* 1000*24*365*10
-        Date expiration = new Date(new Date().getTime() + 3600l * 1000 * 24 * 365 * 10);
+        // 设置URL过期时间为 1 小时
+        Date expiration = new Date(new Date().getTime() + 3600 * 1000);
         // 生成URL
         URL url = ossClient.generatePresignedUrl(OSSConfig.bucketName, key, expiration);
         if (url != null) {

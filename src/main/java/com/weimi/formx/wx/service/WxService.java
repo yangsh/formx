@@ -138,20 +138,21 @@ public class WxService {
         InputStream is = WxUtils.getPicUrl(token, serverIds.get(0));
 
         OSSUtils oss = new OSSUtils();
-        String key = oss.uploadImage(is);
-        String picUrl = oss.getUrl(key);
+        String picName = oss.uploadImage(is);
 
         ShopFormPicItem shopFormPicItem = new ShopFormPicItem();
 
         shopFormPicItem.setShopFormExecutionId(shopFormExecutionId);
-        shopFormPicItem.setPicUrl(picUrl);
+        shopFormPicItem.setPicName(picName);
         shopFormPicItem.setCreateTime(new Date());
 
         shopFormPicItemMapper.add(shopFormPicItem);
 
         List<String> picUrls = new ArrayList<>();
 
-        picUrls.add(picUrl);
+        picUrls.add(oss.getUrl(picName));
+
+        oss.destory();
 
         WxPicDownloadResponse res = new WxPicDownloadResponse();
 

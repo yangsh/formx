@@ -7,12 +7,12 @@
         INSERT INTO t_shop_form_pic_item
         <trim prefix="(" suffix =")" suffixOverrides=",">
             <if test="shopFormExecutionId != null">shop_form_execution_id,</if>
-            <if test="picUrl != null">pic_url,</if>
+            <if test="picName != null">pic_name,</if>
             <if test="createTime != null">create_time,</if>
         </trim>
         <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
             <if test="shopFormExecutionId != null">#{shopFormExecutionId},</if>
-            <if test="picUrl != null">#{picUrl},</if>
+            <if test="picName != null">#{picName},</if>
             <if test="createTime != null">#{createTime},</if>
         </trim>
     </insert>
